@@ -73,24 +73,23 @@ class Person {
   eat(edible) {
     if (this.stomach.length < 10) {
       this.stomach.push(edible);
-      }
     }
+  }
 
   poop() {
-    return this.stomach = [];
-    }
+    return (this.stomach = []);
+  }
 
   toString() {
     return `${this.name}, ${this.age}`;
   }
 }
 
-
-const Kaleb = new Person("Kaleb", 23)
+const Me = new Person("Kaleb", 23);
 
 // Kaleb.eat("fries");
 // Kaleb.poop();
-console.log(Kaleb.toString());
+// console.log(Kaleb.toString());
 // console.log(Kaleb);
 
 /*
@@ -107,7 +106,36 @@ console.log(Kaleb.toString());
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-class Car {}
+class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+
+  fill(gallons) {
+    this.tank = this.tank + gallons;
+  }
+
+  drive(distance) {
+    const milesToDrive = this.tank * this.milesPerGallon;
+    if(distance <= milesToDrive){
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance / this.milesPerGallon);
+    }else{
+      this.odometer = this.odometer + milesToDrive;
+      this.tank = 0; 
+      return `I ran out of gas at ${this.odometer} miles!`
+    }
+    }
+  }
+
+const mustang = new Car("5.0", 17);
+
+// mustang.fill(10);
+// console.log(mustang.drive(250));
+// console.log(mustang);
 
 /*
   TASK 3
@@ -121,7 +149,25 @@ class Car {}
         + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
-class Lambdasian {}
+class Lambdasian {
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
+} 
+
+const Kaleb = new Lambdasian ({
+  name: "Kaleb Van Heusen",
+  age: 23,
+  location: "Vacaville"
+});
+
+// console.log(Kaleb);
+// console.log(Kaleb.speak());
 
 /*
   TASK 4
