@@ -183,7 +183,27 @@ const Kaleb = new Lambdasian ({
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {}
+class Instructor extends Lambdasian{ 
+  constructor(instructorAttributes) {
+    super(instructorAttributes);
+    this.specialty = instructorAttributes.specialty;
+    this.favLanguage = instructorAttributes.favLanguage;
+    this.catchPhrase = instructorAttributes.catchPhrase;
+  }
+  demo(subject) {
+    return `Today we are learning about ${subject}.`;
+  }
+  grade(Kaleb, subject) {
+    return `${Kaleb.name} recieves a perfect score on ${subject}.`;
+  }
+}
+
+const Brit = new Instructor ({
+  specialty: `Web Dev`,
+  favLanguage: `JavaScript`,
+  catchPhrase: `Dont be a Shy Guy!`
+});
+
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
