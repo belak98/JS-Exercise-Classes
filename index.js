@@ -190,12 +190,15 @@ class Instructor extends Lambdasian{
     this.favLanguage = instructorAttributes.favLanguage;
     this.catchPhrase = instructorAttributes.catchPhrase;
   }
+
   demo(subject) {
     return `Today we are learning about ${subject}.`;
   }
+
   grade(Kaleb, subject) {
     return `${Kaleb.name} recieves a perfect score on ${subject}.`;
   }
+
 }
 
 const Brit = new Instructor ({
@@ -219,8 +222,31 @@ const Brit = new Instructor ({
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {}
+class Student extends Lambdasian {
+  constructor (stundentAttributes){
+    super (stundentAttributes);
+    this.previousBackground = stundentAttributes.previousBackground;
+    this.className = stundentAttributes.className;
+    this.favSubjects = stundentAttributes.favSubjects;
+  }
 
+  listSubjects () {
+    let subjects = this.favSubjects.toString();
+    return `Loving ${subjects}.`;
+  }
+
+  PRAssignment (subject) {
+    return `${Student.name} has submitted a PR for ${subject}.`;
+  }
+  sprintChallenge (subject) { 
+    return `${Student.name} has begun sprint challenge on ${subject}`
+  }
+}
+const newStudent = new Student ({
+  previousBackground: `Sanitation Services`,
+  className: `Web46`,
+  favSubjects: ['HTML', 'CSS', "JavaScript"]
+});
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -234,7 +260,20 @@ class Student {}
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {}
+class ProjectManager extends Instructor {
+  constructor(ProjectManagerAtt) {
+    super(ProjectManagerAtt);
+    this.gradClassName = ProjectManagerAtt.gradClassName;
+    this.favInstructor = ProjectManagerAtt.favInstructor;
+  }
+  standUp(slackChannel) {
+    return `${ProjectManager.name} announces to ${slackChannel}, @channel standy times!`;
+
+  }
+  debugsCode(newStudent, favSubjects) {
+    return `${ProjectManager.name} debugs ${newStudent.name}'s code on ${newStudent.favSubjects}`
+  }
+}
 /*
   STRETCH PROBLEM (no tests!)
     - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
